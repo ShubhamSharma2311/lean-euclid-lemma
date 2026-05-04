@@ -21,6 +21,10 @@ theorem euclid {p a b : ℕ} (hp : p.Prime) (h : p ∣ a * b) : p ∣ a ∨ p �
 
 /-- A prime dividing `a ^ n` divides `a`. -/
 theorem dvd_of_dvd_pow {p a n : ℕ} (hp : p.Prime) (h : p ∣ a ^ n) : p ∣ a := by
-  sorry
+  induction n with
+  | zero => exact absurd (Nat.dvd_one.mp (by simpa using h)) hp.one_lt.ne'
+  | succ k ih =>
+    rw [pow_succ] at h
+    exact (euclid hp h).elim ih id
 
 end EuclidLemma
