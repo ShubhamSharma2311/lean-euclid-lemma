@@ -13,4 +13,8 @@ namespace EuclidLemma
 lemma coprime_of_not_dvd {p a : ℕ} (hp : p.Prime) (h : ¬ p ∣ a) : Nat.Coprime p a :=
   (Nat.Prime.coprime_iff_not_dvd hp).mpr h
 
+/-- **Euclid's lemma.** -/
+theorem euclid {p a b : ℕ} (hp : p.Prime) (h : p ∣ a * b) : p ∣ a ∨ p ∣ b := by
+  sorry
+
 end EuclidLemma
