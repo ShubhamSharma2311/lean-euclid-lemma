@@ -19,4 +19,8 @@ theorem euclid {p a b : ℕ} (hp : p.Prime) (h : p ∣ a * b) : p ∣ a ∨ p �
   · exact Or.inl ha
   · exact Or.inr ((coprime_of_not_dvd hp ha).dvd_of_dvd_mul_left h)
 
+/-- A prime dividing `a ^ n` divides `a`. -/
+theorem dvd_of_dvd_pow {p a n : ℕ} (hp : p.Prime) (h : p ∣ a ^ n) : p ∣ a := by
+  sorry
+
 end EuclidLemma
