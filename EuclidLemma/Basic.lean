@@ -15,6 +15,8 @@ lemma coprime_of_not_dvd {p a : ℕ} (hp : p.Prime) (h : ¬ p ∣ a) : Nat.Copri
 
 /-- **Euclid's lemma.** -/
 theorem euclid {p a b : ℕ} (hp : p.Prime) (h : p ∣ a * b) : p ∣ a ∨ p ∣ b := by
-  sorry
+  by_cases ha : p ∣ a
+  · exact Or.inl ha
+  · exact Or.inr ((coprime_of_not_dvd hp ha).dvd_of_dvd_mul_left h)
 
 end EuclidLemma
