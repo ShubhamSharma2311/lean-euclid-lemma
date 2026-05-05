@@ -27,4 +27,9 @@ theorem dvd_of_dvd_pow {p a n : ℕ} (hp : p.Prime) (h : p ∣ a ^ n) : p ∣ a 
     rw [pow_succ] at h
     exact (euclid hp h).elim ih id
 
+/-- A prime dividing a product of a list divides some entry. -/
+theorem exists_dvd_of_dvd_prod {p : ℕ} (hp : p.Prime) :
+    ∀ {l : List ℕ}, p ∣ l.prod → ∃ a ∈ l, p ∣ a := by
+  sorry
+
 end EuclidLemma
