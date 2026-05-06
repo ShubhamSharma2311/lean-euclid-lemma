@@ -29,7 +29,13 @@ theorem dvd_of_dvd_pow {p a n : ℕ} (hp : p.Prime) (h : p ∣ a ^ n) : p ∣ a 
 
 /-- A prime dividing a product of a list divides some entry. -/
 theorem exists_dvd_of_dvd_prod {p : ℕ} (hp : p.Prime) :
-    ∀ {l : List ℕ}, p ∣ l.prod → ∃ a ∈ l, p ∣ a := by
-  sorry
+    ∀ {l : List ℕ}, p ∣ l.prod → ∃ a ∈ l, p ∣ a
+  | [], h => absurd (Nat.dvd_one.mp (by simpa using h)) hp.one_lt.ne'
+  | a :: l, h => by
+    rw [List.prod_cons] at h
+    rcases euclid hp h with ha | hl
+    · exact ⟨a, List.mem_cons_self .., ha⟩
+    · obtain ⟨b, hb, hpb⟩ := exists_dvd_of_dvd_prod hp hl
+      exact ⟨b, List.mem_cons_of_mem a hb, hpb⟩
 
 end EuclidLemma
